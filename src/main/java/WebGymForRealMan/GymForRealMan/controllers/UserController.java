@@ -36,7 +36,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user/{user}")
     public String userProfile(@PathVariable("user") User user, Model model){
         model.addAttribute("user", user);

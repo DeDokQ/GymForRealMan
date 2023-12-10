@@ -27,7 +27,10 @@ public class SecurityConfig {
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/registration").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/course/create").authenticated()
+                        .requestMatchers("/user/**").authenticated()
+                        .requestMatchers("/course/**").authenticated()
+                        .requestMatchers("/admin/user/**").hasRole("ADMIN")
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
@@ -35,16 +38,17 @@ public class SecurityConfig {
                 )
                 .logout(LogoutConfigurer::permitAll);
 
+
         return http.build();
     }
 
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        return daoAuthenticationProvider;
-    }
+//    @Bean
+//    public DaoAuthenticationProvider daoAuthenticationProvider() {
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+//        return daoAuthenticationProvider;
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){

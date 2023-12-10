@@ -10,7 +10,7 @@
 <body>
 <h1>Панель администратора</h1>
 
-<table>
+<table border="1">
     <tr>
         <th>Email:</th>
         <th>Активность:</th>
@@ -28,13 +28,14 @@
             <th>${user.name}</th>
             <th>${user.lastname}</th>
             <th><#list user.roles as role>
-                    <${role}<#sep>,
+                    ${role}<#sep>,
                 </#list></th>
             <th>
-                <form action="admin/user/ban/${user.id}">
-                    <input type="hidden" name="_csrf" value="_csrf.token">
+                <form action="/admin/u/ban/${user.id}" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <input type="submit" value="Бан">
-                </form></th>
+                </form>
+            </th>
             <th><a href="/admin/user/edit/${user.id}">Редактирование</a></th>
             <th><a href="/user/${user.id}">Подробная информация</a></th>
         </tr>
