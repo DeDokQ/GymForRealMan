@@ -1,6 +1,7 @@
 package WebGymForRealMan.GymForRealMan.controllers;
 
 import WebGymForRealMan.GymForRealMan.models.Course;
+import WebGymForRealMan.GymForRealMan.models.User;
 import WebGymForRealMan.GymForRealMan.services.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,15 +23,17 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping("/")
-    public String courses(@RequestParam(name="title", required = false) String title, Principal principal, Model model) {
+    public String courses(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course) {
         model.addAttribute("courses", courseService.listCourse(title));
         model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        model.addAttribute("images", course.getImages());
         return "courses";
     }
 
     @GetMapping("/course/{id}")
-    public String courseInfo(@PathVariable Long id, Model model) {
+    public String courseInfo(@PathVariable Long id, Model model, Principal principal) {
         Course course = courseService.getCourseById(id);
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
         model.addAttribute("course", course);
         model.addAttribute("images", course.getImages());
         return "courseInfo";
@@ -46,13 +49,22 @@ public class CourseController {
             Principal principal
     ) throws IOException {
         courseService.saveCourse(principal, course, file1, file2, file3, file4);
-        return "redirect:/";
+        return "redirect:/your/courses";
     }
 
     @PostMapping("/course/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        courseService.deleteCourse(id);
-        return "redirect:/";
+    public String deleteCourse(@PathVariable Long id, Principal principal) {
+        courseService.deleteCourse(courseService.getUserByPrincipal(principal), id);
+        return "redirect:/your/courses";
+    }
+
+    @GetMapping("/your/courses")
+    public String userCourses(Principal principal, Model model, Course course) {
+        User user = courseService.getUserByPrincipal(principal);
+        model.addAttribute("user", user);
+        model.addAttribute("courses", user.getCourses());
+        model.addAttribute("images", course.getImages());
+        return "yourCourses";
     }
 
     @PostMapping("/test")

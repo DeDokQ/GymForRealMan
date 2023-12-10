@@ -31,6 +31,10 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/course/**").authenticated()
                         .requestMatchers("/admin/user/**").hasRole("ADMIN")
+                        .requestMatchers("/images/**").permitAll()
+                        .requestMatchers("/profile").authenticated()
+                        .requestMatchers("/your/courses").authenticated()
+                        .requestMatchers("/static/**").permitAll()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")

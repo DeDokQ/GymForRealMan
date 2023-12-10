@@ -53,8 +53,8 @@ public class CourseService {
             course.addImage(image4);
         }
         log.info("Новый курс ` {} ` успешно сохранен!", course.getTitle());
-        // Course productFromDb = courseRepository.save(course);
-        course.setPreviewImageId(course.getImages().getFirst().getId());
+        Course courseFromDb = courseRepository.save(course);
+        courseFromDb.setPreviewImageId(course.getImages().get(0).getId());
         courseRepository.save(course);
     }
 
@@ -73,8 +73,20 @@ public class CourseService {
         return image;
     }
 
-    public void deleteCourse(Long id) {
-        courseRepository.deleteById(id);
+    public void deleteCourse(User user, Long id) {
+        // courseRepository.deleteById(id);
+        Course course = courseRepository.findById(id)
+                .orElse(null);
+        if (course != null) {
+            if (course.getUser().getId().equals(user.getId())) {
+                courseRepository.delete(course);
+                log.info("Курс тренажёрного зала GFRM с ID:{} - был удален", id);
+            } else {
+                log.error("У тренера {} нету курса с ID: {}", user.getEmail(), id);
+            }
+        } else {
+            log.error("Курса с данным ID: {} не существует", id);
+        }
     }
 
     public Course getCourseById(Long id) {

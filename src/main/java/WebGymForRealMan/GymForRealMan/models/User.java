@@ -17,7 +17,7 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, updatable = false)
     private String email;
 
     @Column(name = "name")
@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private boolean active;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "image_id")
+    @JoinColumn
     private Image avatar;
 
     @Column(name = "password", length = 1000)
@@ -43,8 +43,14 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<Course> courses = new ArrayList<>();
+
+    public void addCourseToUser(Course course) {
+        course.setUser(this);
+        courses.add(course);
+    }
 
     public boolean isAdmin(){return roles.contains(Role.ROLE_ADMIN); }
     @Override
