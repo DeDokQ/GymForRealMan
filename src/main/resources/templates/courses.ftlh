@@ -8,12 +8,19 @@
     <title>Document</title>
 </head>
 <body>
-<h1>
-    COURSES!!!
-</h1>
+<h1> Курсы в качалочке!!!</h1>
+
+<#if user.email??>
+    <h3>Вы: <i>${user.name}</i></h3>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Выход">
+    </form>
+<#else>
+    <a href="/login">Войти</a>
+</#if>
 
 <form action="/" method="get">
-
     Поиск по названию курса: <input type="text" name="title"><br>
     <input type="submit" value="Поиск">
 </form>
@@ -25,25 +32,27 @@
         <div>
             <p>${course.title} ${course.price} BR | <a href="/course/${course.id}">Подробнее</a></p>
         </div>
-        <#else>
+    <#else>
         <h3>Все курсы закончились...</h3>
     </#list>
-    <hr>
-    <h3>Создать новый курс</h3>
-    <form action="/course/create" method="post" enctype="multipart/form-data">
-        Название курса: <input type="text" name="title"><br><br>
-        Описание курса: <input type="text" name="description"><br><br>
-        Дата проведения курса: <input type="text" name="date"><br><br>
-        Тренер: <input type="text" name="master"><br><br>
-        Цена курса: <input type="number" name="price"><br><br>
-        Изображение 1/4: <input type="file" name="file1"><br><br>
-        Изображение 2/4: <input type="file" name="file2"><br><br>
-        Изображение 3/4: <input type="file" name="file3"><br><br>
-        Изображение 4/4: <input type="file" name="file4"><br><br>
 
-        <input type="submit" value="Добавить курс">
-    </form>
-
+    <#if user.email??>
+        <hr>
+        <h3>Создать новый курс</h3>
+        <form action="/course/create" method="post" enctype="multipart/form-data">
+            Название курса: <input type="text" name="title"><br><br>
+            Описание курса: <input type="text" name="description"><br><br>
+            Дата проведения курса: <input type="text" name="date"><br><br>
+            Тренер: <input type="text" name="master"><br><br>
+            Цена курса: <input type="number" name="price"><br><br>
+            Изображение 1/4: <input type="file" name="file1"><br><br>
+            Изображение 2/4: <input type="file" name="file2"><br><br>
+            Изображение 3/4: <input type="file" name="file3"><br><br>
+            Изображение 4/4: <input type="file" name="file4"><br><br>
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="submit" value="Добавить курс">
+        </form>
+    </#if>
 </h4>
 </body>
 </html>

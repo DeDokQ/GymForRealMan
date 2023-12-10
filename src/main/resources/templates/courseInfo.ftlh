@@ -21,11 +21,7 @@
     <b>Дата проведения курса: </b>${course.date}<br><br>
     <b>Тренер: </b>${course.master}<br><br>
     <b>Цена курса: </b>${course.price}<br><br>
-
-
-    <form action="/course/delete/${course.id}" method="post">
-        <input type="submit" value="Удалить курс">
-    </form>
+    <b>Автор курса: </b><a href="/user/${course.user.id}">${course.user.name}</a>
 </h4>
 </body>
 </html>
