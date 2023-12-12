@@ -1,48 +1,90 @@
 <#macro template user>
     <!doctype html>
-    <html lang="ru">
+    <html lang="en">
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-        <title>Gym For Real Man</title>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+              crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous"></script>
+        <title>TEST</title>
     </head>
     <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a href="/">
-                <span class="navbar-brand mb-0 h1">GFRM</span>
-            </a>
-            <#if user.email??>
-                <div class="dropdown text-end">
-                    <a href="/profile">
-<#--                        <img src="/static/img/avatar.png" class="card-img-top" height="225" width="225" alt="Аккаунт">-->
-                    </a>
+            <a class="navbar-brand" href="/"><i>Gym For Real Man</i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                 aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Навигация</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-            <#else>
-                <button class="btn btn-light my-2 my-sm-0" type="button"
-                        onclick="window.location.href = '/login'">
-                    Войти
-                </button>
-            </#if>
+                <div class="offcanvas-header">
+                    <#if user.email??>
+                        <h6 class="offcanvas-title" id="offcanvasNavbarLabelUserName">Вы: <i>${user.name}</i>
+                        </h6>
+                    <#else>
+                        <h6 class="offcanvas-title" id="offcanvasNavbarLabelUserName">Вы: <b>Гость</b></h6>
+                        <h6><i> Вам необходимо авторизоваться!</i></h6>
+                    </#if>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Главная страничка</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Профиль</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Дополнительные функции
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Пока думаю</a></li>
+                                <li><a class="dropdown-item" href="#">Думаю в тройне</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <#if user.email??>
+                                        <#if user.isAdmin()>
+                                            <a class="dropdown-item" href="/admin">Панель администратора</a>
+                                        </#if>
+                                        <form class="dropdown-item" action="/logout" method="post">
+                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                            <input class="dropdown-item" type="submit" value="Выход">
+                                        </form>
+                                    <#else>
+                                        <a class="dropdown-item" href="/login">Вход</a>
+                                    </#if>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Поиск курса</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </nav>
-    <div class="container mt-4">
+
+    <div class="container">
         <#nested/>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-            crossorigin="anonymous"></script>
     </body>
     </html>
 </#macro>

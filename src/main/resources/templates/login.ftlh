@@ -5,27 +5,87 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
 
-    <form action="/logout" method="post">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" value="Выход">
-    </form>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Test PAGE</title>
 </head>
 <body>
-<h1>Login</h1>
-<form action="/login" method="post">
-    Электронная почта: <input type="email" name="username"><br><br>
-    Пароль: <input type="password" name="password"><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Вход">
-</form>
 
-<a href="/registration">Зарегистрироваться</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
 
-<#if errorMessage??>
-    <h2 style="color:red">${errorMessage}</h2>
-</#if>
+            <div class="tab" role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
+                                                              data-toggle="tab">Авторизоваться</a></li>
+                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Зарегистрироваться</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content tabs">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                        <form action="/login" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Почта</label>
+                                <input type="email" name="username" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Пароль</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="form-group">
+                                <div class="main-checkbox">
+                                    <input value="None" id="checkbox1" name="check" type="checkbox">
+                                    <label for="checkbox1"></label>
+                                </div>
+                                <span class="text">Запомните меня!</span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Войти</button>
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            </div>
+                            <div class="form-group forgot-pass">
+                                <button type="submit" class="btn btn-default">Забыли пароль?</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="Section2">
+                        <form class="form-horizontal" action="/registration" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">First Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Last Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Sign up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
+        </div><!-- /.col-md-offset-3 col-md-6 -->
+    </div><!-- /.row -->
+</div><!-- /.container -->
 </body>
 </html>

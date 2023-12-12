@@ -18,7 +18,6 @@ import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
-@PreAuthorize("hasRole('USER')")
 public class CourseController {
     private final CourseService courseService;
 

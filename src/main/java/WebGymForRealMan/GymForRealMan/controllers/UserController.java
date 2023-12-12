@@ -24,6 +24,12 @@ public class UserController {
         return "login";
     }
 
+    @PostMapping("/logout")
+    public String logout(Principal principal, Model model){
+        model.addAttribute("user", userService.getUserByPrincipal(principal));
+        return "redirect:/";
+    }
+
     @GetMapping("/registration")
     public String registration(Principal principal, Model model){
         model.addAttribute("user", userService.getUserByPrincipal(principal));
@@ -52,5 +58,10 @@ public class UserController {
         model.addAttribute("courses", user.getCourses());
         model.addAttribute("userByPrincipal", userService.getUserByPrincipal(principal));
         return "userProfile";
+    }
+
+    @GetMapping("/testPage")
+    public String testPage(){
+        return "testPage";
     }
 }

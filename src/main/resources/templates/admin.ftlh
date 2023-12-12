@@ -3,32 +3,32 @@
     <h1>Панель администратора</h1>
     <table class="table table-hover table-dark">
         <tr>
-            <th scope="col">Email:</th>
-            <th scope="col">Активность:</th>
-            <th scope="col">Имя:</th>
-            <th scope="col">Фамилия:</th>
-            <th scope="col">Роли:</th>
-            <th scope="col">Бан:</th>
-            <th scope="col">Редактирование:</th>
-            <th scope="col">Подробная информация:</th>
+            <th class="table-dark" scope="col">Email:</th>
+            <th class="table-dark" scope="col">Активность:</th>
+            <th class="table-dark" scope="col">Имя:</th>
+            <th class="table-dark" scope="col">Фамилия:</th>
+            <th class="table-dark" scope="col">Роли:</th>
+            <th class="table-dark" scope="col">Бан:</th>
+            <th class="table-dark" scope="col">Редактирование:</th>
+            <th class="table-dark" scope="col">Подробная информация:</th>
         </tr>
         <#list users as user>
             <tr>
-                <th>${user.email}</th>
-                <th><#if user.active>Доступ<#else>Без доступа</#if></th>
-                <th>${user.name}</th>
-                <th>${user.lastname}</th>
-                <th><#list user.roles as role>
+                <th class="table-dark">${user.email}</th>
+                <th class="table-dark"><#if user.active>Доступ<#else>Без доступа</#if></th>
+                <th class="table-dark">${user.name}</th>
+                <th class="table-dark">${user.lastname}</th>
+                <th class="table-dark"><#list user.roles as role>
                         ${role}<#sep>,
                     </#list></th>
-                <th>
+                <th class="table-dark">
                     <form action="/admin/u/ban/${user.id}" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        <input type="submit" class="btn btn-light" value="Бан">
+                        <input type="submit" class="btn btn-light border border-danger-subtle" value="Бан">
                     </form>
                 </th>
-                <th><a href="/admin/user/edit/${user.id}">Редактирование</a></th>
-                <th><a href="/user/${user.id}">Подробная информация</a></th>
+                <th class="table-dark"><a href="/admin/user/edit/${user.id}">Редактирование</a></th>
+                <th class="table-dark"><a href="/user/${user.id}">Подробная информация</a></th>
             </tr>
         <#else>
             <h3>Список пользователей пуст</h3>

@@ -33,14 +33,19 @@ public class SecurityConfig {
                         .requestMatchers("/admin/user/**").hasRole("ADMIN")
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/profile").authenticated()
-                        .requestMatchers("/your/courses").authenticated()
+                        .requestMatchers("/your/courses/**").authenticated()
                         .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/testPage/**").permitAll()
+                        .requestMatchers("/login/**").permitAll()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll);
+                .logout((logout) ->
+                        logout.logoutSuccessUrl("/")
+                );
+
 
 
         return http.build();
