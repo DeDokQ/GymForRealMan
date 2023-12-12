@@ -4,6 +4,11 @@
 }
 
 .course-link {
-    color: #000 !important;
+    color: #a54747;
     text-decoration: none
+}
+
+.testTEST{
+    font-size: 30px;
+    color: #a54747;
 }

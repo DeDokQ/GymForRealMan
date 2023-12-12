@@ -15,8 +15,8 @@
         <title>TEST</title>
     </head>
     <body>
-    <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid">
+    <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #97979f !important;">
+        <div class="container-fluid" style="background-color: #97979f !important;">
             <a class="navbar-brand" href="/"><i>Gym For Real Man</i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                     aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -24,8 +24,8 @@
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                  aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Навигация</h5>
+                <div class="offcanvas-header" style="background-color: #97979f !important;">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><b>Навигация</b></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-header">

@@ -88,7 +88,8 @@
                     </div>
 <#--                    <img src="/images/${course.previewImageId}" class="card-img-top">-->
                     <div class="card-body">
-                        <h5 class="card-title">${course.title}</h5>
+                        <h5 class="card-title testTEST">${course.title}</h5>
+                        <h5 class="card-title testTEST">testTEST</h5>
                         <p class="card-text">${course.price} ₽</p>
                     </div>
                     <div class="card-footer">

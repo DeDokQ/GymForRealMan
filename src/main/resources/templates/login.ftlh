@@ -10,7 +10,7 @@
           crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,23 +61,24 @@
                     <div role="tabpanel" class="tab-pane fade" id="Section2">
                         <form class="form-horizontal" action="/registration" method="post">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">First Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1">
+                                <label for="exampleInputEmail1">Имя</label>
+                                <input type="text" name="name" class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Last Name</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1">
+                                <label for="exampleInputEmail1">Фамилия</label>
+                                <input type="text" name="lastname" class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1">
+                                <label for="exampleInputEmail1">Электронная почта</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="exampleInputPassword1">Пароль</label>
+                                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default">Sign up</button>
+                                <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+                                <input type="hidden" name="_csrf" value="${_csrf.token}">
                             </div>
                         </form>
                     </div>
