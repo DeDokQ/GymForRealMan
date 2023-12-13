@@ -27,11 +27,6 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/admin/test")
-    public String adminTest(Model model){
-        return "test";
-    }
-
     @PostMapping("/admin/u/ban/{id}")
     public String userBan(@PathVariable("id") Long id) {
         userService.banUser(id);

@@ -65,9 +65,4 @@ public class CourseController {
         model.addAttribute("images", course.getImages());
         return "yourCourses";
     }
-
-    @PostMapping("/test")
-    public String testPage(){
-        return "test";
-    }
 }

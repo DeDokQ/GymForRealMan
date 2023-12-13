@@ -31,9 +31,18 @@ public class SecurityConfig {
                         .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/profile").authenticated()
                         .requestMatchers("/your/courses/**").authenticated()
-                        .requestMatchers("/static/**").permitAll()
+
+                     //   .requestMatchers("/static/").permitAll()
                         .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/fonts/**").permitAll()
+                        .requestMatchers("/img/**").permitAll()
+                        .requestMatchers("/js/**").permitAll()
+                        .requestMatchers("/scss/**").permitAll()
+
                         .requestMatchers("/testPage/**").permitAll()
+                        .requestMatchers("/helpPage").permitAll()
+                        .requestMatchers("/mainPage").permitAll()
+
                         .requestMatchers("/login/**").permitAll()
                 )
                 .formLogin((form) -> form
@@ -43,7 +52,6 @@ public class SecurityConfig {
                 .logout((logout) ->
                         logout.logoutSuccessUrl("/")
                 );
-
 
 
         return http.build();

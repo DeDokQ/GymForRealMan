@@ -11,24 +11,24 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <title>Test PAGE</title>
+    <title>Логин</title>
 </head>
 <body>
 
-<div class="container">
+<div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
 
             <div class="tab" role="tabpanel">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab"
-                                                              data-toggle="tab">Авторизоваться</a></li>
-                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Зарегистрироваться</a></li>
+                        <li role="presentation" class="active col align-self-start text-start" ><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Авторизация</a></li>
+                        <li role="presentation" class="col align-self-end text-end"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Регистрация</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content tabs">
@@ -54,7 +54,7 @@
                                 <input type="hidden" name="_csrf" value="${_csrf.token}">
                             </div>
                             <div class="form-group forgot-pass">
-                                <button type="submit" class="btn btn-default">Забыли пароль?</button>
+                                <a href="/helpPage" type="submit" class="btn btn-default">Забыли пароль?</a>
                             </div>
                         </form>
                     </div>

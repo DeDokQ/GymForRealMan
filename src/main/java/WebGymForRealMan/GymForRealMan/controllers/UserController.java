@@ -1,14 +1,16 @@
 package WebGymForRealMan.GymForRealMan.controllers;
 
+import WebGymForRealMan.GymForRealMan.models.Course;
 import WebGymForRealMan.GymForRealMan.models.User;
+import WebGymForRealMan.GymForRealMan.services.CourseService;
 import WebGymForRealMan.GymForRealMan.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -17,6 +19,7 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
+    private final CourseService courseService;
 
     @GetMapping("/login")
     public String login(Principal principal, Model model){
@@ -57,5 +60,16 @@ public class UserController {
     @GetMapping("/testPage")
     public String testPage(){
         return "testPage";
+    }
+
+    @GetMapping("/helpPage")
+    public String helpPage(){
+        return "index.ftlh";
+    }
+
+    @GetMapping("/mainPage")
+    public String mainPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "index";
     }
 }
