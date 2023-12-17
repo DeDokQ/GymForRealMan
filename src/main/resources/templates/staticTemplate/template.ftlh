@@ -73,7 +73,6 @@
                                         <#else>
                                             <a class="dropdown-item" href="/login">Вход</a>
                                         </#if>
-                                        ``1`
                                     </li>
                                 </ul>
                             </li>

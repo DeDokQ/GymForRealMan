@@ -7,10 +7,8 @@ import WebGymForRealMan.GymForRealMan.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -21,25 +19,54 @@ public class UserController {
     private final UserService userService;
     private final CourseService courseService;
 
-    @GetMapping("/login")
-    public String login(Principal principal, Model model){
-        model.addAttribute("user", userService.getUserByPrincipal(principal));
-        return "login";
-    }
-
     @PostMapping("/logout")
     public String logout(Principal principal, Model model){
         model.addAttribute("user", userService.getUserByPrincipal(principal));
         return "redirect:/";
     }
 
+    @GetMapping("/login")
+    public String login(Principal principal, Model model){
+        model.addAttribute("user", userService.getUserByPrincipal(principal));
+
+        return "login";
+    }
+
+    @GetMapping("/registration")
+    public String registration(
+            Model model,
+            // @RequestParam(name = "errorMessage", defaultValue = "") String errorMessage,
+            @ModelAttribute("errorMessage") String errorMessage
+    ) {
+        model.addAttribute("errorMessage", errorMessage);
+
+        return "/registration";
+    }
+
     @PostMapping("/registration")
-    public String createUser(User user, Model model){
-        if(!userService.createUser(user)){
-            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует!");
-            return "redirect:/login";
+    public String createUser(
+            User user, Model model,
+            @RequestParam(name = "errorMessage", defaultValue = "") String errorMessage,
+            RedirectAttributes redirectAttributes
+    ) {
+        switch(userService.createUser(user)){
+            case 1:
+                redirectAttributes.addFlashAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует!");
+                return "redirect:/registration";
+            case 2:
+                redirectAttributes.addFlashAttribute("errorMessage", "Пароль должен быть от 6-и до 18-и символов и не содержать пробелов!");
+                return "redirect:/registration";
+            case 3:
+                return "/login";
+            default:
+                redirectAttributes.addFlashAttribute("errorMessage", "Не удалось установить соединение с сервером!");
+                return "redirect:/registration";
         }
-        return "redirect:/login";
+//        if(!userService.createUser(user)){
+//            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует!");
+//            return "redirect:/login";
+//        }
+//        return "redirect:/login";
     }
 
     @GetMapping("/profile")

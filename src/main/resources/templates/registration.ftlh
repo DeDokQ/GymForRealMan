@@ -20,45 +20,51 @@
 </head>
 <body>
 
-
 <div class="container position-absolute top-50 start-50 translate-middle">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
+
             <div class="tab">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="col align-self-start text-start"><a href="/registration" style="color: #eec111;"><b>К Регистрации</b></a></li>
+                    <li class="col align-self-start text-start"><a href="/login" style="color: #eec111;"><b>К Авторизации</b></a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab">
-                    <form action="/login" method="post" class="form-horizontal">
+                    <form class="form-horizontal" action="/registration" method="post">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Почта</label>
-                            <input type="email" name="username" class="form-control" id="exampleInputEmail1">
+                            <label for="exampleInputEmail1">Имя</label>
+                            <input type="text" name="name" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Фамилия</label>
+                            <input type="text" name="lastname" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Электронная почта</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Пароль</label>
                             <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="form-group">
-                            <div class="main-checkbox">
-                                <input value="None" id="checkbox1" name="check" type="checkbox">
-                                <label for="checkbox1"></label>
-                            </div>
-                            <span class="text">Запомните меня!</span>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default">Войти</button>
+                            <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+                            <input type="hidden" name="errorMessage" value="${errorMessage}">
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
-                        </div>
-                        <div class="form-group forgot-pass">
-                            <a href="/helpPage" type="submit" class="btn btn-default">Забыли пароль?</a>
+                            <#if errorMessage != " ">
+                                    <p style="color: #f13c3c; font-size: 18px;font-family: 'Times New Roman',serif"><b><i>${errorMessage}</i></b></p>
+                            <#else>
+
+                            </#if>
                         </div>
                     </form>
                 </div>
             </div>
-        </div><!-- /.col-md-offset-3 col-md-6 -->
-    </div><!-- /.row -->
-</div><!-- /.container -->
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>

@@ -23,12 +23,13 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/registration").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/course/create").authenticated()
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/course/**").authenticated()
                         .requestMatchers("/admin/user/**").hasRole("ADMIN")
-                        .requestMatchers("/images/**").permitAll()
+                        // .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/profile").authenticated()
                         .requestMatchers("/your/courses/**").authenticated()
 

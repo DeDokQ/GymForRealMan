@@ -20,17 +20,32 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public boolean createUser(User user) {
+    public int createUser(User user) {
         String email = user.getEmail();
-        if (userRepository.findByEmail(email) != null) return false;
+        if (userRepository.findByEmail(email) != null) return 1;
+        if (user.getPassword().length() < 6 || user.getPassword().length() > 18
+                || user.getPassword().contains(String.valueOf(' '))) return 2;
+
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_USER);
 
         log.info("В нашем данжоне пополнение! -> {}", email);
         userRepository.save(user);
-        return true;
+        return 3;
     }
+
+//    public boolean createUser(User user) {
+//        String email = user.getEmail();
+//        if (userRepository.findByEmail(email) != null) return false;
+//        user.setActive(true);
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        user.getRoles().add(Role.ROLE_USER);
+//
+//        log.info("В нашем данжоне пополнение! -> {}", email);
+//        userRepository.save(user);
+//        return true;
+//    }
 
     public List<User> list(){
         return userRepository.findAll();
