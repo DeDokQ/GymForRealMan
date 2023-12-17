@@ -21,7 +21,8 @@
         <nav class="header navbar bg-body-tertiary fixed-top"
              style="background-color: #1e1e1c !important; max-width: 1200px; margin: 0 auto;">
             <div class="container-fluid" style="background-color: #1e1e1c !important;">
-                <a class="navbar-brand" href="/" style="color: rgba(255, 255, 255, 0.5);"><i>Gym For Real Man</i></a>
+                <a class="navbar-brand" href="/mainPage" style="color: #f1a21c;"><i>Gym For Real
+                        Man</i></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasNavbar"
                         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -30,7 +31,8 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
                      aria-labelledby="offcanvasNavbarLabel">
                     <div class="offcanvas-header" style="background-color: #1e1e1c !important;">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: rgba(255, 255, 255, 0.5);"><b>Навигация</b></h5>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #f1a21c;">
+                            <b>Навигация</b></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                     </div>
@@ -45,7 +47,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/">Главная страничка</a>
+                                <a class="nav-link active" aria-current="page" href="/mainPage">Главная страничка</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/profile">Профиль</a>
@@ -56,8 +58,11 @@
                                     Дополнительные функции
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Пока думаю</a></li>
-                                    <li><a class="dropdown-item" href="#">Думаю в тройне</a></li>
+                                    <li><a class="dropdown-item" href="programPage">Наши программы</a></li>
+                                    <li><a class="dropdown-item" href="eventsPage">Наши события</a></li>
+                                    <li><a class="dropdown-item" href="contactPage">Обратная связь</a></li>
+                                    <li><a class="dropdown-item" href="coachPage">Тренеры</a></li>
+                                    <li><a class="dropdown-item" href="aboutPage">О нас</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -94,65 +99,41 @@
 
         <footer class="site-footer">
             <div class="container">
-
-
                 <div class="row">
                     <div class="col-md-4">
-                        <h3 class="footer-heading mb-4 text-white">About</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quos rem ullam, placeat
-                            amet.</p>
-                        <p><a href="#" class="btn btn-primary rounded text-white px-4">Read More</a></p>
+                        <h3 class="footer-heading mb-4 text-white">О нас</h3>
+                        <p>Наш тренажёрный зал - это единое место, где о Вас позаботятся наши специалисты и присмотрят,
+                            чтобы Вы не получили никаких травм!</p>
+                        <p><a href="aboutPage" class="btn btn-primary rounded text-white px-4">Подробнее</a></p>
                     </div>
                     <div class="col-md-5 ml-auto">
                         <div class="row">
                             <div class="col-md-6">
-                                <h3 class="footer-heading mb-4 text-white">Quick Menu</h3>
+                                <h3 class="footer-heading mb-4 text-white">Быстрое меню</h3>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Our Trainers</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Contacts</a></li>
-                                    <li><a href="#">The Club</a></li>
-                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="profile">Профиль</a></li>
+                                    <li><a href="mainPage">Главная</a></li>
+                                    <li><a href="https://www.youtube.com/watch?v=yrHXMhrs6Qg">Добро пожаловать в
+                                            клуб!</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h3 class="footer-heading mb-4 text-white">Program</h3>
+                                <h3 class="footer-heading mb-4 text-white">Программа</h3>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Body Building</a></li>
-                                    <li><a href="#">Morning Energy</a></li>
-                                    <li><a href="#">Stretching</a></li>
-                                    <li><a href="#">Weight Lifting</a></li>
+                                    <li><a href="programPage">Наши курсы</a></li>
+                                    <li><a href="eventsPage">Наши события</a></li>
+                                    <li><a href="coachPage">Тренеры</a></li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-2">
-                        <div class="col-md-12"><h3 class="footer-heading mb-4 text-white">Social Icons</h3></div>
-                        <div class="col-md-12">
-                            <p>
-                                <a href="#" class="pb-2 pr-2 pl-0"><span class="icon-facebook"></span></a>
-                                <a href="#" class="p-2"><span class="icon-twitter"></span></a>
-                                <a href="#" class="p-2"><span class="icon-instagram"></span></a>
-                                <a href="#" class="p-2"><span class="icon-vimeo"></span></a>
-
-                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="row pt-5 mt-5 text-center">
                     <div class="col-md-12">
                         <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script>
-                            All Rights Reserved | This template is made with <i class="icon-heart text-danger"
-                                                                                aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Лучший тренажёрный зал | Багодарим, что Вы с нами! <i class="icon-heart text-danger"
+                                                                                  aria-hidden="true"></i>
                         </p>
                     </div>
 

@@ -40,9 +40,12 @@ public class SecurityConfig {
                         .requestMatchers("/js/**").permitAll()
                         .requestMatchers("/scss/**").permitAll()
 
-                        .requestMatchers("/testPage/**").permitAll()
-                        .requestMatchers("/helpPage").permitAll()
                         .requestMatchers("/mainPage").permitAll()
+                        .requestMatchers("/aboutPage").permitAll()
+                        .requestMatchers("/contactPage").permitAll()
+                        .requestMatchers("/coachPage").permitAll()
+                        .requestMatchers("/eventsPage").permitAll()
+                        .requestMatchers("/programPage").permitAll()
 
                         .requestMatchers("/login/**").permitAll()
                 )

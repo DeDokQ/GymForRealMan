@@ -22,7 +22,7 @@ public class UserController {
     @PostMapping("/logout")
     public String logout(Principal principal, Model model){
         model.addAttribute("user", userService.getUserByPrincipal(principal));
-        return "redirect:/";
+        return "redirect:/mainPage";
     }
 
     @GetMapping("/login")
@@ -62,11 +62,6 @@ public class UserController {
                 redirectAttributes.addFlashAttribute("errorMessage", "Не удалось установить соединение с сервером!");
                 return "redirect:/registration";
         }
-//        if(!userService.createUser(user)){
-//            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует!");
-//            return "redirect:/login";
-//        }
-//        return "redirect:/login";
     }
 
     @GetMapping("/profile")
@@ -84,19 +79,39 @@ public class UserController {
         return "userProfile";
     }
 
-    @GetMapping("/testPage")
-    public String testPage(){
-        return "testPage";
-    }
-
-    @GetMapping("/helpPage")
-    public String helpPage(){
-        return "index.ftlh";
-    }
-
     @GetMapping("/mainPage")
     public String mainPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
         model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "index";
+        return "mainPage";
+    }
+
+    @GetMapping("/aboutPage")
+    public String aboutPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "aboutPage";
+    }
+
+    @GetMapping("/contactPage")
+    public String contactPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "contactPage";
+    }
+
+    @GetMapping("/programPage")
+    public String programPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "programPage";
+    }
+
+    @GetMapping("/coachPage")
+    public String coachPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "coachPage";
+    }
+
+    @GetMapping("/eventsPage")
+    public String eventsPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "eventsPage";
     }
 }
