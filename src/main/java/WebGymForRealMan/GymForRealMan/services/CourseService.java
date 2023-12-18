@@ -73,20 +73,8 @@ public class CourseService {
         return image;
     }
 
-    public void deleteCourse(User user, Long id) {
-        // courseRepository.deleteById(id);
-        Course course = courseRepository.findById(id)
-                .orElse(null);
-        if (course != null) {
-            if (course.getUser().getId().equals(user.getId())) {
-                courseRepository.delete(course);
-                log.info("Курс тренажёрного зала GFRM с ID:{} - был удален", id);
-            } else {
-                log.error("У тренера {} нету курса с ID: {}", user.getEmail(), id);
-            }
-        } else {
-            log.error("Курса с данным ID: {} не существует", id);
-        }
+    public void deleteCourse(Long id) {
+         courseRepository.deleteById(id);
     }
 
     public Course getCourseById(Long id) {

@@ -11,6 +11,7 @@
             <th class="table-dark" scope="col">Бан:</th>
             <th class="table-dark" scope="col">Редактирование:</th>
             <th class="table-dark" scope="col">Подробная информация:</th>
+            <th class="table-dark" scope="col">Удалить:</th>
         </tr>
         <#list users as user>
             <tr>
@@ -29,6 +30,14 @@
                 </th>
                 <th class="table-dark"><a href="/admin/user/edit/${user.id}">Редактирование</a></th>
                 <th class="table-dark"><a href="/user/${user.id}">Подробная информация</a></th>
+                <th class="table-dark">
+                    <form action="/user/delete/${user.id}" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <button type="submit" class="btn btn-danger m-3">
+                            Удалить
+                        </button>
+                    </form>
+                </th>
             </tr>
         <#else>
             <h3>Список пользователей пуст</h3>

@@ -28,7 +28,6 @@ public class UserController {
     @GetMapping("/login")
     public String login(Principal principal, Model model){
         model.addAttribute("user", userService.getUserByPrincipal(principal));
-
         return "login";
     }
 
@@ -78,40 +77,9 @@ public class UserController {
         model.addAttribute("userByPrincipal", userService.getUserByPrincipal(principal));
         return "userProfile";
     }
-
-    @GetMapping("/mainPage")
-    public String mainPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "mainPage";
-    }
-
-    @GetMapping("/aboutPage")
-    public String aboutPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "aboutPage";
-    }
-
-    @GetMapping("/contactPage")
-    public String contactPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "contactPage";
-    }
-
-    @GetMapping("/programPage")
-    public String programPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "programPage";
-    }
-
-    @GetMapping("/coachPage")
-    public String coachPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "coachPage";
-    }
-
-    @GetMapping("/eventsPage")
-    public String eventsPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
-        model.addAttribute("user", courseService.getUserByPrincipal(principal));
-        return "eventsPage";
+    @PostMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "redirect:/admin";
     }
 }

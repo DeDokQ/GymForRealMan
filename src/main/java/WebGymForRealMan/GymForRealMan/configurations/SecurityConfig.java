@@ -24,12 +24,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/").permitAll()
                         .requestMatchers("/registration").permitAll()
+
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+
                         .requestMatchers("/course/create").authenticated()
+                        .requestMatchers("/course/delete").permitAll()
+
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/course/**").authenticated()
+
                         .requestMatchers("/admin/user/**").hasRole("ADMIN")
-                        // .requestMatchers("/images/**").permitAll()
+                        .requestMatchers("/images/**").permitAll()
+
                         .requestMatchers("/profile").authenticated()
                         .requestMatchers("/your/courses/**").authenticated()
 
@@ -52,9 +58,10 @@ public class SecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
+                        .defaultSuccessUrl("/mainPage").permitAll()
                 )
                 .logout((logout) ->
-                        logout.logoutSuccessUrl("/")
+                        logout.logoutSuccessUrl("/mainPage")
                 );
 
 

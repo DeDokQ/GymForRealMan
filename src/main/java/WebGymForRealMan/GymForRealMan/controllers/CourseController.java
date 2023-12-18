@@ -29,6 +29,46 @@ public class CourseController {
         return "courses";
     }
 
+    @GetMapping("/mainPage")
+    public String mainPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course) {
+        model.addAttribute("courses", courseService.listCourse(title));
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        model.addAttribute("images", course.getImages());
+        return "mainPage";
+    }
+
+    @GetMapping("/aboutPage")
+    public String aboutPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "aboutPage";
+    }
+
+    @GetMapping("/contactPage")
+    public String contactPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "contactPage";
+    }
+
+    @GetMapping("/programPage")
+    public String programPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        model.addAttribute("courses", courseService.listCourse(title));
+        model.addAttribute("images", course.getImages());
+        return "programPage";
+    }
+
+    @GetMapping("/coachPage")
+    public String coachPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "coachPage";
+    }
+
+    @GetMapping("/eventsPage")
+    public String eventsPage(@RequestParam(name="title", required = false) String title, Principal principal, Model model, Course course){
+        model.addAttribute("user", courseService.getUserByPrincipal(principal));
+        return "eventsPage";
+    }
+
     @GetMapping("/course/{id}")
     public String courseInfo(@PathVariable Long id, Model model, Principal principal) {
         Course course = courseService.getCourseById(id);
@@ -52,8 +92,8 @@ public class CourseController {
     }
 
     @PostMapping("/course/delete/{id}")
-    public String deleteCourse(@PathVariable Long id, Principal principal) {
-        courseService.deleteCourse(courseService.getUserByPrincipal(principal), id);
+    public String deleteCourse(@PathVariable("id") Long id) {
+        courseService.deleteCourse(id);
         return "redirect:/your/courses";
     }
 
