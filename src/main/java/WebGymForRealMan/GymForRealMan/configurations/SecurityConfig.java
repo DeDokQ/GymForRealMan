@@ -29,7 +29,6 @@ public class SecurityConfig {
 
                         .requestMatchers("/course/create").authenticated()
                         .requestMatchers("/course/delete").permitAll()
-
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/course/**").authenticated()
 
